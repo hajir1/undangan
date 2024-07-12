@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Ga+Maamli&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap");
 .bgMajored {
-  background: linear-gradient(to top, #f540b8, white);
+  background: linear-gradient(to top, rgb(243 244 246), #e76cbe, white);
+}
+.bgFooter {
+  background: linear-gradient(to bottom, rgb(243 244 246), #e76cbe);
 }
 .font-primary {
   font-family: "Playwrite CU", cursive;
