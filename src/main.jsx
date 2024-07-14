@@ -4,8 +4,13 @@ import "./index.css";
 import "./main.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Majored from "./component/Majored.jsx";
+import Home from "./component/Home.jsx";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
   {
     path: "/:nama",
     element: <Majored />,
