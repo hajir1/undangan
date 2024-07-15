@@ -25,25 +25,44 @@ const Majored = () => {
       typed.destroy();
     };
   }, []);
-  // useEffect(() => {
-  //   window.addEventListener("load", function () {
-  //     const form = document.getElementById("my-form");
-  //     form.addEventListener("submit", function (e) {
-  //       e.preventDefault();
-  //       const data = new FormData(form);
-  //       const action = e.target.action;
-  //       fetch(action, {
-  //         method: "POST",
-  //         body: data,
-  //       }).then(() => {
-  //         alert("Success!");
-  //       });
-  //     });
-  //   });
-  // }, []);
   const handleUndangan = () => {
+    setIsScrollEnabled(true);
     undanganRef.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const rootElement = document.querySelector(":root");
+
+    const disableScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft =
+        window.pageXOffset || document.documentElement.scrollLeft;
+      window.onscroll = () => {
+        window.scrollTo(scrollTop, scrollLeft);
+      };
+      if (rootElement) {
+        rootElement.style.scrollBehavior = "auto";
+      }
+    };
+
+    const enableScroll = () => {
+      window.onscroll = null;
+      if (rootElement) {
+        rootElement.style.scrollBehavior = "";
+      }
+    };
+
+    if (isScrollEnabled) {
+      enableScroll();
+    } else {
+      disableScroll();
+    }
+
+    return () => {
+      enableScroll();
+    };
+  }, [isScrollEnabled]);
 
   AOS.init({
     disable: false,
@@ -83,17 +102,17 @@ const Majored = () => {
     }
   };
   return (
-    <div className="w-full lg:flex lg:items-center lg:flex-col">
+    <div className="w-full lg:flex lg:items-center lg:flex-col ">
       <ReactConfetti></ReactConfetti>
-      <div className="bgMajored w-full h-screen flex flex-col items-center p-1 lg:w-4/5 ">
+      <div className="bgMajored w-full h-screen flex flex-col items-center p-2 lg:w-4/5 ">
         <h1 className=" font-xl mt-16 uppercase font-sans text-slate-800">
           kami mengundang saudara
         </h1>
         <h1
           ref={titleref}
-          className=" font-primary capitalize font-semibold h-10 mt-4 text-2xl"
+          className=" font-primary capitalize font-semibold h-20 mt-4 text-3xl"
         ></h1>
-        <p className="mt-10 mb-1 text-center">
+        <p className="mt-10 mb-1 text-center uppercase font-sans">
           untuk pelaksaanaan acara ulang tahun putra kecil kami :{" "}
         </p>
         <div className="w-64 h-64 bg-white rounded-full"></div>
@@ -158,8 +177,7 @@ const Majored = () => {
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.589329214565!2d112.61662247412835!3d-8.243983582794009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78a756844f736f%3A0xee8e378530c977fc!2sSMK%20Negeri%201%20Gedangan!5e0!3m2!1sid!2sid!4v1720751715808!5m2!1sid!2sid"
             loading="lazy"
-            style={{ border: "1px solid black" }}
-            className="w-full h-40 p-1 lg:h-96"
+            className="w-full h-72 border-b-black border-[1px] p-1 lg:h-96"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen=""
           ></iframe>
@@ -177,7 +195,7 @@ const Majored = () => {
         <h1 className="font-secondary text-black text-center text-4xl mt-10">
           konfirmasi kehadiran
         </h1>
-        <p className="font-mono text-black text-center text-sm lg:text-xl lg:mt-6">
+        <p className="font-mono text-black text-center mt-3 text-sm lg:text-xl lg:mt-6">
           isi form dibawah ini untuk konfirmasi kehadiran
         </p>
         <form
@@ -214,7 +232,7 @@ const Majored = () => {
                 Konfirmasi :
               </label>
             </div>
-            <div className="md:w-1/3">
+            <div className="md:w-2/3">
               <select
                 className="bg-gray-100 mt-2 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
                 id="inline-password"
