@@ -82,14 +82,14 @@ const Majored = () => {
     anchorPlacement: "top-bottom",
   });
   const timer = () => {
-    const dateUltah = new Date("July 17 , 2024 14:20:00").getTime();
+    const dateUltah = new Date("July 29 , 2024 14:20:00").getTime();
     const now = new Date().getTime();
     const remainingDate = dateUltah - now;
     return remainingDate;
   };
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      return <Completionist />;
+      return;
     } else {
       return (
         <div data-aos="flip-up" className="flex justify-evenly gap-4">
