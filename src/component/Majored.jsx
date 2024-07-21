@@ -151,7 +151,7 @@ const Majored = () => {
           data-aos-duration="1000"
           className="text-center mt-5 font-mono tracking-wide text-slate-900 lg:text-xl"
         >
-          yang diselenggarakan pada 17 juli 2024
+          yang diselenggarakan pada 29 juli 2024
         </p>
         <p
           data-aos="flip-right"
